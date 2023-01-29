@@ -1,5 +1,7 @@
 # Project Part 1 - Communication Application UI Only (HTML and CSS) 
+link to view this page online: https://atultvarghese.github.io/communication/welcome.html
 
+Tasks:
 1. Welcome page, welcome.html - use hyperlink no form
 2. Login page, login.html - use form
 3. Login Successful page, login-success.html
