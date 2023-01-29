@@ -1,12 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Group chat</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body{
+            text-align: center;
+        }
+        table{
+            height: 300px !important;
+            width: 100%;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: left;
+            
+        }
+        #first-row {
+            border: 2px solid black;
+            border-bottom: none;
+            padding: 5px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        #last-row {
+            border: 2px solid black;
+            border-top: none;
+            padding: 5px;
+            text-align: center;
+            padding-top: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>chat</h1>
+    <div id="navbar">
+        <div class="nav-column" style="width:25%; background-color: white;"><a class="nav-link" href="./chat.html">Group Chat</a></div>
+        <div class="nav-column" style="width:25%;"><a class="nav-link" href="./users-list.html">Manage Users</a></div>
+        <div class="nav-column" style="width:25%;"><a class="nav-link" href="./documents-list.html">Manage Documents</a></div>
+        <div class="nav-column" style="width:25%;"><a class="nav-link" href="./logout.html">Logout</a></div>
+    </div>
+    <div id="first-row">Group Chat</div>
+    <table>
+        <tr>
+            <td>[2023-01-27 10:22:30] Text user Lorem, ipsum dolor sit amet consectetur</td>
+        </tr>
+        <tr>
+            <td>[2023-01-27 10:22:30] Text user Lorem, ipsum dolor sit amet consectetur</td>
+        </tr>
+        <tr>
+            <td>[2023-01-27 10:22:30] Text user Lorem, ipsum dolor sit amet consectetur</td>
+        </tr>
+        <tr>
+            <td>[2023-01-27 10:22:30] Text user Lorem, ipsum dolor sit amet consectetur</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <div id="last-row">
+        Anne Hunter
+        <input size="100px" type="text">
+        <button>Sent</button>
+        <button>Refresh</button>
+    </div>
 </body>
+
 </html>

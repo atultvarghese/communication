@@ -6,25 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Documents</title>
+    <link rel="stylesheet" href="./css/style.css">
     <style>
         a {
             color: black;
-            text-decoration: none;
         }
-        #navbar {
-            display: flex;
-            flex-wrap: nowrap;
+        table{
+            width: 100%;
+            border: 2px solid black;
+        }
+        th{
+            background-color: lightgray;
+        }
+        tr:nth-child(odd) {
+            border: 1px solid black;
+            background-color: rgb(232, 232, 232);
+        }
+        th{
+            background-color: lightgray;
         }
 
-        .nav-column {
-            flex: 1;
-            width: 25%;
-            padding: 5px;
-            background-color: lightgray;
-            border: 1px solid black;
-            border-radius: 2px;
-            text-align: center;
-            margin: 0px;
+        .modal {
+            display: none;
+            position: fixed;
+            overflow: hidden;
+            background-color: white;
+            /* width: 200px; */
+            /* height: 200px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .close,
+        .delete {
+            color: grey;
+            /* float: ce; */
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .close:hover,
+        .close:focus,
+        .delete:hover,
+        .delete:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -32,12 +66,155 @@
 <body style="text-align: center;">
     <div id="navbar">
         <div class="nav-column" style="width:25%;"><a href="./chat.html">Group Chat</a></div>
-        <div class="nav-column" style="width:25%;"><a href="./edit-users.html">Manage Users</a></div>
-        <div class="nav-column" style="width:25%;"><a href="./documents-list.html">Manage Documents</a></div>
+        <div class="nav-column" style="width:25%;"><a href="./users-list.html">Manage Users</a>
+        </div>
+        <div class="nav-column" style="width:25%;background-color: white;"><a href="./documents-list.html">Manage Documents</a></div>
         <div class="nav-column" style="width:25%;"><a href="./logout.html">Logout</a></div>
     </div>
-    <h3>Login Successfull</h3>
-    <span><b> Welcome ! </b>anne.hunter@mail.com</span>
+    <div style="text-align: left;padding: 10px;"><b>My Uploads</b></div>
+    <table>
+        <tr>
+            <th style="text-align: left;">Label</th>
+            <th>File Name</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>Sale Report</td>
+            <td>sale-sep.xls</td>
+            <td>
+                <a onclick="OnEdit()" href="#">Edit</a> | <a onclick="OnDelete()" href="#">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Anne Hunter</td>
+            <td>annehunter@mail.com</td>
+            <td>
+                <a onclick="OnEdit()" href="#">Edit</a> | <a onclick="OnDelete()" href="#">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Jale Boser</td>
+            <td>Jale@yahoo.com</td>
+            <td>
+                <a onclick="OnEdit()" href="#">Edit</a> | <a onclick="OnDelete()" href="#">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div style="text-align: left;padding: 10px;"><b>Shared Uploads</b></div>
+    <table>
+        <tr>
+            <th style="text-align: left;">Label</th>
+            <th>File Name</th>
+            <th>Shared By</th>
+        </tr>
+        <tr>
+            <td>Sale team Report</td>
+            <td>sale-sep-team.xls</td>
+            <td>
+                anne.hunter@mail.com
+            </td>
+        </tr>
+        <tr>
+            <td>Office Rules</td>
+            <td>rules.xls</td>
+            <td>
+                hr@mail.com
+            </td>
+        </tr>
+        
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="text-align: left;"><button onclick="OnUpload()" style="background-color: aqua;padding: 5px;border-radius: 5px;">+ Add Upload</button></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div id="deleteModal" class="modal">
+        <table style="padding: 0px;">
+            <tr>
+                <th style="background-color: white; border-bottom: 2px solid black; margin: 0px;">Confirm User Deletion
+                </th>
+            </tr>
+            <tr>
+                <td style="padding: 20px;">Are you sure?</td>
+            </tr>
+            <tr>
+                <td style="background-color: white;"><button class="delete">ok</button>
+                    <button onclick="OnClose()" class="close">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="editModal" class="modal">
+        <table style="padding: 0px;">
+            <tr>
+                <th style="background-color: white; border-bottom: 2px solid black; margin: 0px;">Edit
+                </th>
+            </tr>
+            <tr>
+                <td style="padding: 20px;">File Discription &nbsp;<input style="border: 1px solid black;border-radius: 5px; padding: 5px;" type="text"></td>
+            </tr>
+            <tr>
+                <td style="background-color: white;"><button class="delete">Save</button>
+                    <button onclick="OnClose()" class="close">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="uploadModal" class="modal">
+        <table style="padding: 0px;">
+            <tr>
+                <th style="background-color: white; border-bottom: 2px solid black; margin: 0px;">Upload
+                </th>
+            </tr>
+            <tr>
+                <td style="padding: 20px;">
+                    File Discription &nbsp;
+                    <input style="border: 1px solid black;border-radius: 5px; padding: 5px;" type="text">
+                    <br>
+                    File Upload &nbsp;
+                    <input type="file" id="myFile" name="filename">
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: white;"><button class="delete">Upload Now</button>
+                    <button onclick="OnClose()" class="close">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById("deleteModal").style.display = "none"
+            document.getElementById("editModal").style.display = "none"
+            document.getElementById("uploadModal").style.display = "none"
+        function OnEdit() {
+            document.getElementById("editModal").style.display = "block"
+        }
+        function OnUpload() {
+            document.getElementById("uploadModal").style.display = "block"
+        }
+        function OnDelete() {
+            document.getElementById("deleteModal").style.display = "block"
+        }
+        function OnClose() {
+            document.getElementById("deleteModal").style.display = "none"
+            document.getElementById("editModal").style.display = "none"
+            document.getElementById("uploadModal").style.display = "none"
+        }
+    </script>
 </body>
 
 </html>
